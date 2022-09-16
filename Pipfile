@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+strawberry-graphql = {extras = ["debug-server"], version = "*"}
+gunicorn = "*"
+
+[dev-packages]
+yapf = "*"
+flake8 = "*"
+ipython = "*"
+isort = "*"
+autoflake = "*"
+bump2version = "*"
+pre-commit = "*"
+
+[requires]
+python_version = "3.10"
