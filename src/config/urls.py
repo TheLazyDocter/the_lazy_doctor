@@ -20,16 +20,15 @@ class Book:
     def hello() -> str:
         return "world"
 
-
-def get_books():
-    return [
-        Book(title='The Great Gatsby',),
-    ]
-
-
 @strawberry.type
 class Query:
-    books: list[Book] = strawberry.field(resolver=get_books)
+
+    @strawberry.field
+    def books() -> list[Book]:
+        return [
+            Book(title='The Great Gatsby',),
+        ]
+        
 
 
 schema = strawberry.Schema(query=Query)
