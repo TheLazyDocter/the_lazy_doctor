@@ -7,4 +7,5 @@ echo >&2 'collecting static files'
 python manage.py collectstatic --no-input
 
 echo >&2 'starting server'
-/usr/local/bin/gunicorn config.wsgi:application -w 2 -b :$PORT --reload
+python manage.py runserver 0.0.0.0:$PORT
+# /usr/local/bin/gunicorn config.wsgi:application -w 2 -b :$PORT --reload
