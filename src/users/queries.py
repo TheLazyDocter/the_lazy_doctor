@@ -1,6 +1,7 @@
-import strawberry
-from strawberry import auto
+# third party
 from strawberry import django
+
+# local
 from . import models
 
 

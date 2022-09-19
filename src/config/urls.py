@@ -1,44 +1,16 @@
 # django
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
 
 # third party
-import strawberry
-import strawberry.django
-
 from strawberry.django.views import GraphQLView
 
 # local
 from . import __version__
-
-from users.queries import Users
-from users.models import User, UserKind
-
-@strawberry.type
-class Book:
-    title: str
-
-    @strawberry.field
-    def hello() -> str:
-        return "world"
-
-
-@strawberry.type
-class Query:
-    
-    users: list[Users] = strawberry.django.field()
-    
-    @strawberry.field
-    def books() -> list[Book]:
-        return [
-            Book(title='The Great Gatsby',),
-        ]
-
-
-schema = strawberry.Schema(query=Query)
+from .schema import schema
 
 urlpatterns = [
     path("admin/", admin.site.urls),
