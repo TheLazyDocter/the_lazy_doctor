@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 # third party
 import strawberry
+import strawberry.django
 
 from strawberry.django.views import GraphQLView
 
@@ -28,9 +29,7 @@ class Book:
 @strawberry.type
 class Query:
     
-    @strawberry.django.field
-    def users(self, info) -> list[Users]: 
-        return User.objects.filter(kind=UserKind.ADMIN)
+    users: list[Users] = strawberry.django.field()
     
     @strawberry.field
     def books() -> list[Book]:
