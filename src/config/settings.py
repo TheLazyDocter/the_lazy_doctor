@@ -39,7 +39,7 @@ INSTALLED_APPS = [
 
     # third party
     'strawberry.django',
-    
+
     # local
     'core',
     'users',

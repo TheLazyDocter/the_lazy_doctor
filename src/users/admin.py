@@ -8,8 +8,12 @@ from .models import User
 
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
-        (None, {"fields": ("username", "password", "kind")}),
-        ("Personal info", {"fields": ("first_name", "last_name", "email")}),
+        (None, {
+            "fields": ("username", "password", "kind")
+        }),
+        ("Personal info", {
+            "fields": ("first_name", "last_name", "email")
+        }),
         (
             "Permissions",
             {
@@ -22,7 +26,10 @@ class UserAdmin(BaseUserAdmin):
                 ),
             },
         ),
-        ("Important dates", {"fields": ("last_login", "date_joined")}),
+        ("Important dates", {
+            "fields": ("last_login", "date_joined")
+        }),
     )
+
 
 admin.site.register(User, UserAdmin)

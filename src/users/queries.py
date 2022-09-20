@@ -1,10 +1,16 @@
 # third party
-from strawberry import django
-
+import strawberry
+from strawberry import django, auto
 # local
 from . import models
 
 
 @django.type(models.User)
-class Users:
+class User:
     username: str
+
+
+@django.input(models.User)
+class UserInput:
+    username: auto
+    password: auto
