@@ -14,29 +14,21 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="appointment",
             name="created_at",
-            field=models.DateTimeField(
-                default=django.utils.timezone.now, editable=False
-            ),
+            field=models.DateTimeField(default=django.utils.timezone.now, editable=False),
         ),
         migrations.AlterField(
             model_name="appointment",
             name="updated_at",
-            field=models.DateTimeField(
-                default=django.utils.timezone.now, editable=False
-            ),
+            field=models.DateTimeField(default=django.utils.timezone.now, editable=False),
         ),
         migrations.AlterField(
             model_name="slot",
             name="created_at",
-            field=models.DateTimeField(
-                default=django.utils.timezone.now, editable=False
-            ),
+            field=models.DateTimeField(default=django.utils.timezone.now, editable=False),
         ),
         migrations.AlterField(
             model_name="slot",
             name="updated_at",
-            field=models.DateTimeField(
-                default=django.utils.timezone.now, editable=False
-            ),
+            field=models.DateTimeField(default=django.utils.timezone.now, editable=False),
         ),
     ]

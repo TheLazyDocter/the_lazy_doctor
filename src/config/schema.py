@@ -6,20 +6,22 @@ from strawberry_django import mutations
 # first party
 from users.queries import User, UserInput
 
-from bookings.mutations import AppointmentInput, AppointmentType
+from bookings.schema.mutations import BookingMutation
+from bookings.schema.queries import AppointmentType, make_a_booking
+
 
 @strawberry.type
 class Query:
     users: list[User] = field()
     me: User = auth.current_user()
+    bookings: list[AppointmentType] = strawberry.field(resolver=make_a_booking)
 
 
 @strawberry.type
-class Mutation:
+class Mutation(BookingMutation):
     login: User = auth.login()
     logout = auth.logout()
     register: User = auth.register(UserInput)
-    book: AppointmentType = mutations.create(AppointmentInput)
 
 
 schema = strawberry.Schema(
