@@ -8,6 +8,8 @@ django = "*"
 strawberry-graphql = {extras = ["debug-server"], version = "*"}
 gunicorn = "*"
 strawberry-graphql-django = "*"
+strawberry-django-plus = "*"
+rich = "*"
 
 [dev-packages]
 yapf = "*"
