@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 django = "*"
-strawberry-graphql = {extras = ["debug-server"], version = "*"}
+strawberry-graphql = "==0.132.0"
 gunicorn = "*"
 strawberry-graphql-django = "*"
 strawberry-django-plus = "*"
