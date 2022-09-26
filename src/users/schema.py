@@ -38,7 +38,7 @@ class Query:
 
 @strawberry.type
 class Mutation:
-    create_user: User = gql.django.create_mutation(UserInput)
-    create_user2: User = strawberry.django.mutations.create(UserInput)
+    create_user_plus: User = gql.django.create_mutation(UserInput)
+    create_user: User = strawberry.django.mutations.create(UserInput)
     # update_model: User = gql.django.update_mutation(SomeModelInputPartial)
     # delete_model: User = gql.django.delete_mutation(gql.NodeInput)
