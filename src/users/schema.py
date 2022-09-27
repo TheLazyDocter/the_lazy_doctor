@@ -1,3 +1,4 @@
+import typing
 import strawberry
 import strawberry.django
 
@@ -5,6 +6,7 @@ from strawberry import ID
 from strawberry.types.info import Info
 from strawberry_django_plus import gql
 from strawberry_django_plus.permissions import IsAuthenticated
+from strawberry.permission import BasePermission
 
 from .models import User as mUser, PatientProfile as mPatientProfile
 
@@ -40,6 +42,14 @@ class UserInputPartial(gql.NodeInput):
     last_name: str
     email: str
 
+from strawberry.types import Info
+
+class IsAuth(BasePermission):
+    message = "User is not authenticated sir"
+
+    # This method can also be async!
+    def has_permission(self, source: typing.Any, info: Info, **kwargs) -> bool:
+        return False
 
 @strawberry.type
 class Query:
@@ -53,6 +63,10 @@ class Query:
 
     @gql.django.field(directives=[IsAuthenticated()])
     def me(self, info: Info) -> User:
+        return info.context.request.user
+    
+    @gql.django.field(permission_classes=[IsAuth])
+    def mee(self, info: Info) -> User:
         return info.context.request.user
     
 @strawberry.type
