@@ -4,6 +4,7 @@ import strawberry.django
 from strawberry import ID
 from strawberry.types.info import Info
 from strawberry_django_plus import gql
+from strawberry_django_plus.permissions import IsAuthenticated
 
 from .models import User as mUser, PatientProfile as mPatientProfile
 
@@ -44,13 +45,13 @@ class UserInputPartial(gql.NodeInput):
 class Query:
     # details
     user: User = strawberry.django.field()
-    user_plus: User = gql.django.field()
+    user_plus: User = gql.django.field(directives=[IsAuthenticated()])
     
     # list
     users: list[User] = strawberry.django.field()
     users_plus: list[User] = gql.django.field()
 
-    @gql.django.field
+    @gql.django.field(directives=[IsAuthenticated()])
     def me(self, info: Info) -> User:
         return info.context.request.user
     
