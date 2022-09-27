@@ -2,6 +2,7 @@ import strawberry
 import strawberry.django
 
 from strawberry import ID
+from strawberry.types.info import Info
 from strawberry_django_plus import gql
 
 from .models import User as mUser, PatientProfile as mPatientProfile
@@ -49,6 +50,9 @@ class Query:
     users: list[User] = strawberry.django.field()
     users_plus: list[User] = gql.django.field()
 
+    @gql.django.field
+    def me(self, info: Info) -> User:
+        return info.context.request.user
     
 @strawberry.type
 class Mutation:
