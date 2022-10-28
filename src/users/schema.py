@@ -11,20 +11,12 @@ from .types import User, UserInput
 
 @strawberry.type
 class Query:
-    # details
-    user: User = strawberry.django.field()
-    user_plus: User = gql.django.field(permission_classes=[IsAuthenticated])
+    users: list[User] = gql.django.field(permission_classes=[IsAuthenticated])
+    user: User = gql.django.field(permission_classes=[IsAuthenticated])
     
-    # list
-    users: list[User] = strawberry.django.field()
-    users_plus: list[User] = gql.django.field(permission_classes=[IsAuthenticated])
-
-    @gql.django.field()
-    def me(self, info: Info) -> User:
-        return info.context.request.user
     
     @gql.django.field(permission_classes=[IsAuthenticated])
-    def mee(self, info: Info) -> User:
+    def me(self, info: Info) -> User:
         return info.context.request.user
     
 @strawberry.type
