@@ -8,39 +8,7 @@ from strawberry_django_plus import gql
 from strawberry_django_plus.permissions import IsAuthenticated
 from strawberry.permission import BasePermission
 
-from .models import User as mUser, PatientProfile as mPatientProfile
-
-
-
-@gql.django.type(mUser)
-class User:
-    id: ID
-    username: str
-    patientprofile: 'UserProfile'
-
-
-@gql.django.type(mPatientProfile)
-class UserProfile:
-    address: str
-    
-
-@gql.django.input(mUser)
-class UserInput:
-    username: str
-    password: str
-    patientprofile: 'UserProfileInput'
-
-@gql.django.input(mPatientProfile)
-class UserProfileInput:
-    address: str
-
-
-@gql.django.partial(mUser)
-class UserInputPartial(gql.NodeInput):
-    username: str
-    first_name: str
-    last_name: str
-    email: str
+from .types import User, UserInput
 
 from strawberry.types import Info
 
