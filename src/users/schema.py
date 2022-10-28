@@ -1,39 +1,29 @@
-import typing
 import strawberry
 import strawberry.django
 
-from strawberry import ID
-from strawberry.types.info import Info
+from strawberry.types import Info
 from strawberry_django_plus import gql
-from strawberry_django_plus.permissions import IsAuthenticated
-from strawberry.permission import BasePermission
+
+from core.permissions import IsAuthenticated
 
 from .types import User, UserInput
 
-from strawberry.types import Info
-
-class IsAuth(BasePermission):
-    message = "User is not authenticated sir"
-
-    # This method can also be async!
-    def has_permission(self, source: typing.Any, info: Info, **kwargs) -> bool:
-        return False
 
 @strawberry.type
 class Query:
     # details
     user: User = strawberry.django.field()
-    user_plus: User = gql.django.field(directives=[IsAuthenticated()])
+    user_plus: User = gql.django.field(permission_classes=[IsAuthenticated])
     
     # list
     users: list[User] = strawberry.django.field()
-    users_plus: list[User] = gql.django.field()
+    users_plus: list[User] = gql.django.field(permission_classes=[IsAuthenticated])
 
-    @gql.django.field(directives=[IsAuthenticated()])
+    @gql.django.field()
     def me(self, info: Info) -> User:
         return info.context.request.user
     
-    @gql.django.field(permission_classes=[IsAuth])
+    @gql.django.field(permission_classes=[IsAuthenticated])
     def mee(self, info: Info) -> User:
         return info.context.request.user
     
