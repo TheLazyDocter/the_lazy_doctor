@@ -16,13 +16,14 @@ class UserType:
 @gql.django.type(models.PatientProfile)
 class UserProfileType:
     address: str
-    
+
 
 @gql.django.input(models.User)
 class UserInput:
     username: str
     password: str
     patientprofile: 'UserProfileInput'
+
 
 @gql.django.input(models.PatientProfile)
 class UserProfileInput:

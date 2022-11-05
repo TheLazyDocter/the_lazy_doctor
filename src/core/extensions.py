@@ -1,14 +1,14 @@
+# django
+from django.contrib.auth import get_user_model
+from django.http.request import HttpRequest
+
 # third party
 from graphql import GraphQLResolveInfo
 from strawberry.extensions import Extension
 from strawberry.utils.await_maybe import AwaitableOrValue
 
-from django.http.request import HttpRequest
-
-
-from django.contrib.auth import get_user_model
-
 User = get_user_model()
+
 
 class AuthenticateExtension(Extension):
     keyword: str = 'Bearer'
@@ -23,8 +23,7 @@ class AuthenticateExtension(Extension):
         if val is not None:
             key, val = val.split(sep=' ')
 
-            if key == self.keyword: 
-                info.context.request.user =  User.objects.get(pk=int(val))
-        
-        return _next(root, info, *args, **kwargs)
+            if key == self.keyword:
+                info.context.request.user = User.objects.get(pk=int(val))
 
+        return _next(root, info, *args, **kwargs)

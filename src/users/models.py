@@ -22,6 +22,6 @@ class User(AbstractUser):
 
 class PatientProfile(models.Model):
     """ just for testing nested create and nested query"""
-    
+
     user = models.OneToOneField('User', on_delete=models.CASCADE)
     address = models.TextField()

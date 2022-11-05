@@ -127,11 +127,14 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": {"rich": {"datefmt": "[%X]"}},
+    "formatters": {
+        "rich": {
+            "datefmt": "[%X]"
+        }
+    },
     "handlers": {
         "console": {
             "class": "rich.logging.RichHandler",
@@ -139,5 +142,9 @@ LOGGING = {
             "level": "DEBUG",
         }
     },
-    "loggers": {"django": {"handlers": ["console"]}},
+    "loggers": {
+        "django": {
+            "handlers": ["console"]
+        }
+    },
 }

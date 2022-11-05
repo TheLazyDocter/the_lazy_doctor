@@ -12,6 +12,7 @@ from users.schema import Mutation as UserMutation, Query as UserQuery
 class Query(UserQuery):
     pass
 
+
 @strawberry.type
 class Mutation(UserMutation):
     pass
@@ -20,5 +21,5 @@ class Mutation(UserMutation):
 schema = strawberry.Schema(
     query=Query,
     mutation=Mutation,
-    extensions=[AuthenticateExtension]
+    extensions=[AuthenticateExtension],
 )
