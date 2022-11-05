@@ -6,7 +6,7 @@ from django.db import models
 class UserKind(models.IntegerChoices):
     ADMIN = 1
     DOCTOR = 2
-    CUSTOMER = 3
+    PATIENT = 3
 
 
 class User(AbstractUser):
@@ -14,7 +14,7 @@ class User(AbstractUser):
 
     kind = models.PositiveSmallIntegerField(
         choices=UserKind.choices,
-        default=UserKind.CUSTOMER,
+        default=UserKind.PATIENT,
     )
 
     objects: UserManager
