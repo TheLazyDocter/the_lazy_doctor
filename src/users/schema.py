@@ -1,15 +1,16 @@
-from typing import cast
+# core
+from core.permissions import IsAuthenticated
 
+# third party
 import strawberry
 import strawberry.django
 
 from strawberry.types import Info
 from strawberry_django_plus import gql
 
-from core.permissions import IsAuthenticated
-
-from .models import User
-from .types import UserType, UserInput
+# local
+from .models import User, UserKind
+from .types import UserType
 
 
 @strawberry.type
@@ -36,13 +37,14 @@ class Mutation:
         # TODO valid the token 
 
         try:
-            user = User.objects.get(pk=1)
+            user = User.objects.get(kind=UserKind.PATIENT, pk=1)
         except User.DoesNotExist:
             # TODO get the user form firebase
             user = User.objects.create_user(
                 username='ivin',
                 password='Notpassword',
                 email='ivin@email.com',
+                kind=UserKind.PATIENT
             )
 
         return user

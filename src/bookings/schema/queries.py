@@ -1,8 +1,11 @@
-import strawberry
-
+# builtins
 from datetime import datetime
 
-from ..models import Slot, Appointment
+# third party
+import strawberry
+
+# local
+from ..models import Appointment
 
 
 @strawberry.type

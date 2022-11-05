@@ -1,6 +1,8 @@
-from django.db import models
+# django
 from django.contrib.auth import get_user_model
+from django.db import models
 
+# core
 from core.models import BaseModel
 
 User = get_user_model()

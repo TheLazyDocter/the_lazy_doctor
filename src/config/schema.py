@@ -1,8 +1,10 @@
 # third party
 import strawberry
 
-from users.schema import Query as UserQuery, Mutation as UserMutation
 from strawberry_django_plus.directives import SchemaDirectiveExtension
+
+# first party
+from users.schema import Mutation as UserMutation, Query as UserQuery
 
 
 @strawberry.type

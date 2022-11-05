@@ -1,11 +1,10 @@
-import strawberry
+# builtins
+from datetime import datetime
 
 # third party
 import strawberry
-from strawberry import django, auto
-from datetime import datetime
 
-from users.models import User
+from strawberry import auto, django
 
 # local
 from ..models import Appointment, Slot

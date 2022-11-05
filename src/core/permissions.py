@@ -1,8 +1,9 @@
+# builtins
 import typing
 
-from strawberry.types import Info
-
+# third party
 from strawberry.permission import BasePermission
+from strawberry.types import Info
 
 
 class IsAuthenticated(BasePermission):

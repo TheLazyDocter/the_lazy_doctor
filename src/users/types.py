@@ -1,10 +1,9 @@
+# third party
 from strawberry import ID
-
-
 from strawberry_django_plus import gql
 
+# local
 from . import models
-
 
 
 @gql.django.type(models.User)
