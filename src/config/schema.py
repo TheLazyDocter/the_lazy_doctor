@@ -1,7 +1,8 @@
+# core
+from core.extensions import AuthenticateExtension
+
 # third party
 import strawberry
-
-from strawberry_django_plus.directives import SchemaDirectiveExtension
 
 # first party
 from users.schema import Mutation as UserMutation, Query as UserQuery
@@ -19,5 +20,5 @@ class Mutation(UserMutation):
 schema = strawberry.Schema(
     query=Query,
     mutation=Mutation,
-    extensions=[SchemaDirectiveExtension,]
+    extensions=[AuthenticateExtension]
 )

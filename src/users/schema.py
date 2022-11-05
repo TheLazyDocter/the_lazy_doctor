@@ -10,7 +10,7 @@ from strawberry_django_plus import gql
 
 # local
 from .models import User, UserKind
-from .types import UserType
+from .types import UserInputPartial, UserType
 
 
 @strawberry.type
@@ -25,6 +25,7 @@ class Query:
     
 @strawberry.type
 class Mutation:
+    me: UserType = gql.django.update_mutation(UserInputPartial)
 
     @strawberry.mutation
     def on_boarding(self, token: str) -> UserType:
