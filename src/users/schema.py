@@ -27,8 +27,14 @@ class Mutation:
 
     @strawberry.mutation
     def on_boarding(self, token: str) -> UserType:
+        """ mutation used to convert firebase user to user 
+            also returns the `status` of the user registrations
+            - NEW
+            - EXISTING
+        """
+
         # TODO valid the token 
-        
+
         try:
             user = User.objects.get(pk=1)
         except User.DoesNotExist:
