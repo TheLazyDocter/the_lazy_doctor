@@ -8,14 +8,14 @@ from . import models
 
 
 @gql.django.type(models.User)
-class User:
+class UserType:
     id: ID
     username: str
-    patientprofile: 'UserProfile'
+    patientprofile: 'UserProfileType'
 
 
 @gql.django.type(models.PatientProfile)
-class UserProfile:
+class UserProfileType:
     address: str
     
 
