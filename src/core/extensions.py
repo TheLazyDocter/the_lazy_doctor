@@ -15,6 +15,7 @@ class AuthenticateExtension(Extension):
     auth_header_key: str = 'Authorization'
 
     def resolve(self, _next, root, info: GraphQLResolveInfo, *args, **kwargs) -> AwaitableOrValue[object]:
+        # TODO: add caching to user
         request: HttpRequest = info.context.request
 
         val = request.headers.get(self.auth_header_key)
